@@ -1,7 +1,12 @@
 # Ray edition
 
 增加了 Https 的支持，需要：
-- 把服务器的证书文件(certificate.crt, private.key)放到`/cert`目录下
+- 把服务器的证书文件(server.crt, server.key)放到`/cert`目录下
+
+	```
+	acme.sh --installcert -d unieagle.top --ecc  --key-file   /cert/server.key   --fullchain-file /cert/server.crt
+	```
+
 - 如果Https可用，则会启动https服务；否则会打印出错误信息，并且以http的形式启动。
 
 # ChatGPT Web

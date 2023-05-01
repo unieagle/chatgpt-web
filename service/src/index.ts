@@ -93,8 +93,8 @@ app.set('trust proxy', 1)
 try {
   const certPath = '/cert';
   const options = {
-    key: fs.readFileSync(`${certPath}/private.key`),
-    cert: fs.readFileSync(`${certPath}/certificate.crt`)
+    key: fs.readFileSync(`${certPath}/server.key`),
+    cert: fs.readFileSync(`${certPath}/server.crt`)
   };
 
   https.createServer(options, app).listen(3002, () => {
