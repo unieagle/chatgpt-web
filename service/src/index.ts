@@ -1,4 +1,6 @@
 import express from 'express'
+import https from 'https';
+import fs from 'fs';
 import type { RequestProps } from './types'
 import type { ChatMessage } from './chatgpt'
 import { chatConfig, chatReplyProcess, currentModel } from './chatgpt'
@@ -86,4 +88,25 @@ app.use('', router)
 app.use('/api', router)
 app.set('trust proxy', 1)
 
-app.listen(3002, () => globalThis.console.log('Server is running on port 3002'))
+
+// 尝试启用 HTTPS
+try {
+  const certPath = '/cert';
+  const options = {
+    key: fs.readFileSync(`${certPath}/private.key`),
+    cert: fs.readFileSync(`${certPath}/certificate.crt`)
+  };
+
+  https.createServer(options, app).listen(3002, () => {
+    console.log('Server is running on port 3002 with HTTPS');
+  });
+} catch (error) {
+  // 如果启用 HTTPS 失败，尝试使用 HTTP 启用服务器，并打印错误信息
+  console.error('Failed to start HTTPS server', error);
+  
+  http.createServer(app).listen(3002, () => {
+    console.log('Server is running on port 3002 with HTTP');
+  });
+}
+
+// app.listen(3002, () => globalThis.console.log('Server is running on port 3002'))

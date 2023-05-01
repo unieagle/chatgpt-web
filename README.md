@@ -1,3 +1,9 @@
+# Ray edition
+
+增加了 Https 的支持，需要：
+- 把服务器的证书文件(certificate.crt, private.key)放到`/cert`目录下
+- 如果Https可用，则会启动https服务；否则会打印出错误信息，并且以http的形式启动。
+
 # ChatGPT Web
 
 > 声明：此项目只发布于 GitHub，基于 MIT 协议，免费且作为开源学习使用。并且不会有任何形式的卖号、付费服务、讨论群、讨论组等行为。谨防受骗。
