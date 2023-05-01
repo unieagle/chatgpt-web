@@ -4,6 +4,8 @@
 - 把服务器的证书文件(server.crt, server.key)放到`/cert`目录下
 
 	```
+	sudo su
+	mkdir /cert
 	acme.sh --installcert -d unieagle.top --ecc  --key-file   /cert/server.key   --fullchain-file /cert/server.crt
 	```
 
